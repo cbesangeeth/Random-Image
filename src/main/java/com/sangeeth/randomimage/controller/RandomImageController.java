@@ -15,8 +15,8 @@ public class RandomImageController {
     @Autowired
     private RestTemplate restTemplate;
 
-    String randomImageURL = "https://picsum.photos/";
-    String resolution = "200/300";
+    String randomImageURL = "https://picsum.photos";
+    String resolution = "/200/300";
 
     @GetMapping(value = "/", produces = MediaType.IMAGE_JPEG_VALUE)
     public byte[] getRandomImage() throws IOException {
@@ -26,7 +26,7 @@ public class RandomImageController {
 
     @GetMapping(value = "/{id}", produces = MediaType.IMAGE_JPEG_VALUE)
     public byte[] getRandomImage(@PathVariable(value = "id")  String id) throws IOException {
-        ResponseEntity<byte[]> response = restTemplate.getForEntity(randomImageURL+"id/"+id+resolution, byte[].class);
+        ResponseEntity<byte[]> response = restTemplate.getForEntity(randomImageURL+"/id/"+id+resolution, byte[].class);
         return response.getBody();
     }
 }
